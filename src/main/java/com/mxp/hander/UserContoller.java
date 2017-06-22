@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 public class UserController{
     //12312312343234
     private String index(){
-        int s=5;
+        int s=6;
         return null;
     }
 }
