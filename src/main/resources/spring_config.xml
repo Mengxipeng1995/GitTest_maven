@@ -21,13 +21,18 @@
 
     <bean name="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"></property>
-        <property name="typeAliasesPackage" value="com.mxp.model"></property>
         <property name="configLocation" value="classpath:mybaits-config.xml"></property>
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSession"></property>
         <property name="basePackage" value="com.mxp.mapper"></property>
+    </bean>
+
+    <!--配置批量操作的SQLSession-->
+    <bean id="BathSqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSession"></constructor-arg>
+       <constructor-arg name="executorType" value="BATCH"></constructor-arg>
     </bean>
 
     <!--配置事务-->

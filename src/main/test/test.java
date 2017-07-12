@@ -2,21 +2,26 @@
  * Created by mxp on 2017/6/30.
  */
 
+import com.mxp.mapper.DeptMapper;
+import com.mxp.mapper.EmpMapper;
+import com.mxp.model.Dept;
+import com.mxp.model.Emp;
 import org.junit.Test;
-import org.mybatis.generator.api.MyBatisGenerator;
-import org.mybatis.generator.config.Configuration;
-import org.mybatis.generator.config.xml.ConfigurationParser;
-import org.mybatis.generator.internal.DefaultShellCallback;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import javax.sql.DataSource;
+import java.sql.SQLException;
+import java.util.UUID;
 
 public class test {
 
 
+    /*@Autowired
+    private DeptMapper deptMapper;*/
 
-   /* private static ApplicationContext ctx = null;
+    private static ApplicationContext ctx = null;
 
     static{
         ctx = new ClassPathXmlApplicationContext("classpath:spring_config.xml");
@@ -35,13 +40,25 @@ public class test {
     }
 
     @Test
-    public  void testinsert(){
-        userServices = (UserServices)ctx.getBean("userServicesImpl");
-        User user = new User(-1,"aaa","bbb","ccc");
-        userServices.insertUser(user);
-    }*/
+    public  void testinsertDept(){
+        DeptMapper deptMapper = ctx.getBean("deptMapper",DeptMapper.class);
+        System.out.println(deptMapper);
+        deptMapper.insertSelective(new  Dept(null,"开发部"));
+        deptMapper.insertSelective(new  Dept(null,"测试部"));
+    }
 
     @Test
+    public  void testinsertEmp(){
+        SqlSessionTemplate mapper = ctx.getBean("BathSqlSession",SqlSessionTemplate.class);
+        EmpMapper emp = mapper.getMapper(EmpMapper.class);
+        for (int i=0 ;i<1000;i++) {
+            String uuid = UUID.randomUUID().toString().substring(0, 4) + i;
+            emp.insertSelective(new Emp(null, uuid, "M", uuid + "@mxp.com", 3));
+        }
+
+    }
+
+/*    @Test
     public void testMBG() throws Exception{
         List<String> warnings = new ArrayList<>();
         boolean overwrite = true;
@@ -51,5 +68,5 @@ public class test {
         DefaultShellCallback callback = new DefaultShellCallback(overwrite);
         MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config,callback,warnings);
         myBatisGenerator.generate(null);
-    }
+    }*/
 }

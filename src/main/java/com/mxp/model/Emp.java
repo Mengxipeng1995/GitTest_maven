@@ -11,6 +11,37 @@ public class Emp {
 
     private Integer dId;
 
+    private Dept dept;
+
+
+    public Emp(Integer empId, String empName, String gender, String email, Integer dId) {
+        this.empId = empId;
+        this.empName = empName;
+        this.gender = gender;
+        this.email = email;
+        this.dId = dId;
+    }
+
+    public Emp() {
+    }
+
+    public Emp(Integer empId, String empName, String gender, String email, Integer dId, Dept dept) {
+        this.empId = empId;
+        this.empName = empName;
+        this.gender = gender;
+        this.email = email;
+        this.dId = dId;
+        this.dept = dept;
+    }
+
+    public Dept getDept() {
+        return dept;
+    }
+
+    public void setDept(Dept dept) {
+        this.dept = dept;
+    }
+
     public Integer getEmpId() {
         return empId;
     }
