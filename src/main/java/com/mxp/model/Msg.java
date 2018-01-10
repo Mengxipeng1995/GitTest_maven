@@ -12,7 +12,7 @@ public class Msg {
     //提示信息
     private  String msg;
     //数据存储
-    private Map<String,Object> map = new HashMap<>();
+    private Map<String,Object> map = new HashMap();
 
     public static Msg success(){
         Msg result = new Msg();

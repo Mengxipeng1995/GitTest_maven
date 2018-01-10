@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.PageContext;
 import java.util.List;
 import java.util.Map;
 
@@ -32,7 +34,13 @@ public class EmpController {
         List<Emp> emp = empServices.getAllEmp();
         //将数据加入到pageInfo中,连续显示的页数
         PageInfo pageInfo = new PageInfo(emp,5);
+
+        HttpServletResponse response;
+        PageContext pageContext = null;
+
+
         return Msg.success().add("pageInfo",pageInfo);
+
     }
 
 

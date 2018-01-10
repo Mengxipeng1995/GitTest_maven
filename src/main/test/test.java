@@ -12,6 +12,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.sql.DataSource;
+import java.io.*;
 import java.sql.SQLException;
 import java.util.UUID;
 
@@ -69,4 +70,45 @@ public class test {
         MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config,callback,warnings);
         myBatisGenerator.generate(null);
     }*/
+
+    @Test
+    public void ss() throws IOException {
+        ByteArrayOutputStream out1 = new ByteArrayOutputStream();
+        InputStream is = null;
+        try {
+
+            File filePath = new File("D:\\cssp_resource\\世界经济年鉴2015年\\pdf\\世界经济年鉴2015_l.pdf");
+            is = new FileInputStream(filePath);
+
+            byte[] line = new byte[102400]; // 用来保存每行读取的内容
+            int length = 0;// 读取第一行
+            while ((length = is.read(line)) > 0) {
+                out1.write(line, 0, length);
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            out1.flush();
+            out1.close();
+            is.close();
+        }
+
+    }
+    @Test
+    public void ttt(){
+
+
+
+        String author = ";汪信砚;;;;［英］埃里克·霍布斯鲍姆;吕增奎;;林绪武;;;;";
+
+        String[] auList = author.split(";");
+        if (author != null && !author.equals("")) {
+            for (String a : auList) {
+                System.out.print(a.trim());
+            }
+        }
+    }
+
 }
