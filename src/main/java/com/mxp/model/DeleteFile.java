@@ -40,7 +40,7 @@ public class DeleteFile {
     }
 
     public static void main(String[] args) {
-        test("H:\\文件\\Working\\机械工业出版社\\程序\\17.7.10给托尔斯的排版文件（共10个）\\bookfies");
+      //  test("H:\\文件\\Working\\机械工业出版社\\程序\\17.7.10给托尔斯的排版文件（共10个）\\bookfies");
     }
 
 }
