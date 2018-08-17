@@ -235,9 +235,6 @@
       <artifactId>junit-jupiter-api</artifactId>
       <version>RELEASE</version>
     </dependency>
-
-   
-
   </dependencies>
   <!--解决Intellij构建项目时，target/classes目录下不存在mapper.xml文件-->
 
@@ -245,12 +242,17 @@
 
   <build>
     <resources>
-        <resource>
-          <directory>src/main/java</directory>
-          <includes>
-            <include>**/*.xml</include>
-          </includes>
-        </resource>
+      <resource>
+        <directory>src/main/java</directory>
+        <includes>
+          <include>**/*.properties</include>
+          <include>**/*.xml</include>
+        </includes>
+        <filtering>true</filtering>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
     </resources>
     <finalName>GitTest_maven</finalName>
     <plugins>
