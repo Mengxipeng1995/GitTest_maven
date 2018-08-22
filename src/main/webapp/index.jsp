@@ -11,5 +11,6 @@
 <body>
 <button class="btn btn-primary">BTN</button>
 <h2>Hello World!</h2>
+<a href="upload.jsp">上传</a>
 </body>
 </html>
