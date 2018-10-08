@@ -156,7 +156,7 @@
     </set>
     where dept_id = #{deptId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mxp.model.Dept" >
+  <update id="updateByPrimaryKey"  parameterType="com.mxp.model.Dept" >
     update dept
     set dept_name = #{deptName,jdbcType=VARCHAR}
     where dept_id = #{deptId,jdbcType=INTEGER}

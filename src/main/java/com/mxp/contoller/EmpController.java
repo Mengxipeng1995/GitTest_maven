@@ -7,11 +7,13 @@ import com.mxp.model.Msg;
 import com.mxp.services.EmpServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.PageContext;
 import java.util.List;
 import java.util.Map;
@@ -58,5 +60,18 @@ public class EmpController {
         PageInfo pageInfo = new PageInfo(emp,5);
         map.put("pageInfo",pageInfo);
        return "list";
+    }
+
+    @RequestMapping("/testSession/{index}")
+    public void testsession(HttpSession session, @PathVariable("index") String index){
+        session.setAttribute("user",index);
+        Object sy = session.getAttribute("user");
+        System.out.println(sy);
+    }
+
+    @RequestMapping("/getSession")
+    public void getsession(HttpSession session){
+        Object s = session.getAttribute("user");
+        System.out.println("sssssss=>"+s);
     }
 }
